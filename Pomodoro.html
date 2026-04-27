@@ -4,6 +4,7 @@
 
     <body>
 
+        <p id = "MSG"></p>
         <p id = "timer"></p>
         <script>
             //Name: Distractions
@@ -30,24 +31,24 @@
             function displayTimer(){
                 switch(timeState){
                     case 1: //studytime 
-                        document.getElementById("timer").innerHTML = "It's Study Time!";
+                        document.getElementById("MSG").innerHTML = "It's Study Time!";
                         minutes = _studyTime;
                         isBreakTime=false;
                         timeState = 3;
                         break;
                         
-                    case 2: //breaktime
-                        
-                        //display breaktime to HTML
-                        //Start timer countdown for break time
-                        
-                        document.getElementById("timer").innerHTML = "It's Break Time!";
+                    case 2: //breaktime                        
+                        document.getElementById("MSG").innerHTML = "It's Break Time!";
+                        minutes = _breakTime;
+                        isBreakTime = true;
+                        timeState = 3;
                         break;
                     case 3: //running timer
                         runningTime();
                         break;
                     case 4: //timer end & cycle handler
                         
+                        document.getElementById("MSG").innerHTML = "";
                         document.getElementById("timer").innerHTML = "Time's Up!";
 
                         break;
