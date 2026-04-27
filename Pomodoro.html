@@ -6,18 +6,24 @@
             const _studyTime = 30; //total minutes in study timer
             const _breakTime = 10;//total minutes in break timer
 
-            let minutes= _studyTime;// 
+            let minutes= 1;// 
             let seconds = 0;
+            let isBreakTime = false;
             setInterval(displayTimer,1000);
             function displayTimer(){
 
                 if (minutes ===0&&seconds ===0){
                     
-                    document.getElementById("timer").innerHTML = "Times Up!";
+                    document.getElementById("timer").innerHTML = "Time's Up!";
+                    isBreakTime= true;
                 
                 }
+                if(isBreakTime === true){
+                    document.getElementById("timer").innerHTML = "Break Time!";
+                    minutes = 2;
+                    isBreakTime=false;
+                }
                 else{
-
                     
                     document.getElementById("timer").innerHTML = minutes +"m"+seconds+"s";
                     //After 0 comes 59;
