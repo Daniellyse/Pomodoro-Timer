@@ -18,9 +18,10 @@
                 }
                 else{
 
-                    document.getElementById("timer").innerHTML = minutes +"m"+seconds+"s"
+                    
+                    document.getElementById("timer").innerHTML = minutes +"m"+seconds+"s";
                     //After 0 comes 59;
-                    if(minutes>=1&&seconds==-1){
+                    if(minutes>=1&&seconds==0){
                         seconds = 59;
                         minutes--;
                     }
