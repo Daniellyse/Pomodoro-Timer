@@ -15,7 +15,21 @@
             let isBreakTime = false;
             let cycle = 0; //after 4 cycles, 20-30 minute break
             setInterval(displayTimer,1000);
+            
+            //StudyTime(30m) & BreakTime (30m) 0/4 cycles
+            //Display StudyMsg
+            //CountDownTimer && CountDownMsg
+            //TimerEnd->Display Time's Up
+            //Set Break timer -> Display BreakMSG
+            //CountDownTimer && CountDownMsg
+            //TimerEnd->Display Time's Up
+            //increment cycle && Break Time++ when cycle >=4
+            //Display StudyMsg (loop)
+
+
+
             function displayTimer(){
+
                 switch(timeState){
                     case 1: //studytime 
                         //display study to HTML
