@@ -21,35 +21,68 @@
             padding: 30px;
             width: 200px;
         }
+        .how2{
+            text-align: center;
+            color:darkblue;
+            
+            border-style:solid;
+            border-color: rgb(228, 236, 78);
+            background-color: rgb(255, 255, 222);
+            border-radius: 12px;
+            width: 400px;
+            padding:12px;
+        }
 
         
     </style>
     <body>
         <h2>Pomodoro</h2>
+        <div class = "how2">
+            
+            <p>Welcome to Pomodoro!</p>
+            <p>This is a time-management technique for studying</p>
+            <p>Default study time is 25 minutes.</p>
+            <p>Followed by 5 minute breaks!</p>
+            <p>You'll recieve longer breaks the longer you study!</p>
+            <p>You can customize your time below:</p>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
         <div class = "container">
+            <p>Input your Study Time:</p>
+            <input type = "number" id="inputStudyMin" min="1" max="59">
+            <p>Input your Break Time:</p>
+            
+            <input type = "number" id="inputBreakMin" min="1" max="59">
+
             <p id = "msg"></p>
             <p id = "timer"></p>
-            <button onclick="setInterval(displayTimer,1000);">Start Timer</button>
+            <button onclick="setInterval(displayTimer,1000)">Start Timer</button>
         
         </div>
        
         <script>
             //Name: Distractions or Unwind (WIP: fun little tasks to unwind while on break)
-            const _studyTime = 1; //total minutes in study timer
-            let breakTime = 1;//total minutes in break timer (changes w/Cycle)
+
+            let _studyTime = 25; //total minutes in study timer
+            let breakTime = 5;//total minutes in break timer (changes w/Cycle)
             //
             let minutes= 0;//for timer use
             let seconds = 0;
             //
-            let timeState = 1; //controls switchStates
+            let timeState = 0; //controls switchStates
             let isBreakTime = false;//Determines if in Study or Break state
             let isCongrats = false; //gone to case 5?
             //
-            let cycle = 4; //after 4 cycles, 20-30 minute break
-            const _addTime= 1; 
+            let cycle = 0; //after 4 cycles, 20-30 minute break
+            const _addTime= 10; 
 
             
-            //StudyTime(30m) & BreakTime (10m) 0/4 cycles [Set above]
+            //StudyTime(30m) & BreakTime (10m) 0/4 cycles [Set above, Custom Below]
             //Display StudyMsg && Setup Study mins [Done]
             //CountDownTimer && CountDownMsg [Done]
             //TimerEnd->Display Time's Up [Done]
@@ -59,7 +92,19 @@
             //increment cycle && Break Time++ when cycle >=4(cycle-Handling) [Done]
             //Display StudyMsg (loop)
             function displayTimer(){
+                
+                //console.log("break:"+breakTime);
+                //console.log("timeState:"+timeState);
                 switch(timeState){
+                    case 0: //initialize times after buttonpress
+                        _studyTime = document.getElementById("inputStudyMin").value;
+                        
+                        //console.log("break 1:"+breakTime);
+                        breakTime = parseInt(document.getElementById("inputBreakMin").value);
+                        
+                        //console.log("break 2:"+breakTime);
+                        timeState = 1;
+                        break;
                     case 1: //studytime 
                         document.getElementById("msg").innerHTML = "It's Study Time! Cycle: "+cycle+"/4";
                         document.getElementById("timer").innerHTML = "";
@@ -70,7 +115,9 @@
                     case 2: //breaktime                        
                         document.getElementById("msg").innerHTML = "It's Break Time! Cycle: "+cycle+"/4";
                         document.getElementById("timer").innerHTML = "";
+                        //console.log("break 3:"+breakTime);
                         minutes = breakTime;
+                        //console.log("break 4:"+breakTime);
                         isBreakTime = true;
                         timeState = 3; //start timer
                         break;
@@ -79,17 +126,20 @@
                         break;
                     case 4: //timer end & cycle handler
                         if(isBreakTime === true){
-                            if(cycle===4&&isCongrats===false){
-                                breakTime +=_addTime;
-                                timeState = 5; //congrats!!
-                                break;
-                                
-                            }
-                            if(cycle===4&&isCongrats===true){
-                                cycle = 0; //reset (time to do a new cycle!)
-                                isCongrats = false;
-                                timeState = 1;
-                                break;
+                            if(cycle===4){
+                                if(isCongrats===false){
+                                    //console.log("break 5:"+breakTime);
+                                    breakTime +=_addTime;
+                                    //console.log("break 6:"+breakTime);
+                                    timeState = 5; //congrats!!
+                                    break;
+                                }
+                                else{
+                                    cycle = 0; //reset (time to do a new cycle!)
+                                    isCongrats = false;
+                                    timeState = 1;
+                                    break;
+                                }
                             }  
                             if(cycle<4){
                                 //Just finished breakTime
@@ -103,8 +153,6 @@
                             //Go take a break!
                             timeState = 2;
                         }
-                        
-
                         break;
                     case 5:
                         document.getElementById("msg").innerHTML = "! ! P O M O D O R O ! ! 4/4"; 
@@ -116,7 +164,6 @@
             }
             function runningTime(){
                 if (minutes ===0&&seconds <=0){
-                    
                     document.getElementById("msg").innerHTML = "Time's Up!";
                     document.getElementById("timer").innerHTML = "0m0s";
                     timeState = 4;
