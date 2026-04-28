@@ -5,16 +5,6 @@
         <p id = "timer"></p>
         <script>
             //Name: Distractions
-<<<<<<< Updated upstream
-            const _studyTime = 30; //total minutes in study timer
-            const _addTime= 5;
-
-            let breakTime = 10;//total minutes in break timer
-            let minutes= 1;// 
-            let seconds = 0;
-            let timeState = 1;
-            let isBreakTime = false;
-=======
             const _studyTime = 1; //total minutes in study timer
             let breakTime = 1;//total minutes in break timer (changes w/Cycle)
             //
@@ -24,7 +14,6 @@
             let timeState = 1; //controls switchStates
             let isBreakTime = false;//Determines if in Study or Break state
             //
->>>>>>> Stashed changes
             let cycle = 0; //after 4 cycles, 20-30 minute break
             const _addTime= 1; 
 
@@ -41,19 +30,6 @@
             function displayTimer(){
                 switch(timeState){
                     case 1: //studytime 
-<<<<<<< Updated upstream
-                        document.getElementById("MSG").innerHTML = "It's Study Time!";
-                        minutes = _studyTime;
-                        isBreakTime=false;
-                        timeState = 3;
-                        break;
-                        
-                    case 2: //breaktime                        
-                        document.getElementById("MSG").innerHTML = "It's Break Time!";
-                        minutes = _breakTime;
-                        isBreakTime = true;
-                        timeState = 3;
-=======
                         document.getElementById("msg").innerHTML = "It's Study Time!";
                         document.getElementById("timer").innerHTML = "";
                         minutes = _studyTime; 
@@ -67,7 +43,6 @@
                         minutes = breakTime;
                         isBreakTime = true;
                         timeState = 3; //start timer
->>>>>>> Stashed changes
                         break;
                     case 3: //running timer
                         runningTime();
@@ -90,23 +65,14 @@
 
                         }
 
-<<<<<<< Updated upstream
-                        document.getElementById("MSG").innerHTML = "";
-                        document.getElementById("timer").innerHTML = "Time's Up!";
-=======
->>>>>>> Stashed changes
                         break;
                 }
             }
             function runningTime(){
-<<<<<<< Updated upstream
-                if (minutes ===0&&seconds ===0){
-=======
                 if (minutes ===0&&seconds <=0){
                     
                     document.getElementById("msg").innerHTML = "Time's Up!";
                     document.getElementById("timer").innerHTML = "0m0s";
->>>>>>> Stashed changes
                     timeState = 4;
                 }
                 else{
@@ -123,12 +89,8 @@
                 
             }
         </script>
-<<<<<<< Updated upstream
-    
-        <button onclick="setInterval(displayTimer,1000)">Start Timer</button>
-=======
         <button onclick="setInterval(displayTimer,1000);">Start Timer</button>
->>>>>>> Stashed changes
+        <p>To reset the timer, please refresh the page.</p>
         
     </body>
 </html>
