@@ -16,7 +16,9 @@
             background-size:contain;
         }
         .container{
-            background-color: aliceblue;
+            background-color: rgb(216, 237, 255);
+            border-style: solid;
+            border-color:rgb(194, 225, 253);
             border-radius: 12px;
             padding: 30px;
             width: 200px;
@@ -54,10 +56,10 @@
 
         <div class = "container">
             <p>Input your Study Time:</p>
-            <input type = "number" id="inputStudyMin" min="1" max="59">
+            <input type = "number" id="inputStudyMin" min="1" max="59" value = "25">
             <p>Input your Break Time:</p>
             
-            <input type = "number" id="inputBreakMin" min="1" max="59">
+            <input type = "number" id="inputBreakMin" min="1" max="59" value = "5">
 
             <p id = "msg"></p>
             <p id = "timer"></p>
@@ -97,12 +99,11 @@
                 //console.log("timeState:"+timeState);
                 switch(timeState){
                     case 0: //initialize times after buttonpress
-                        _studyTime = document.getElementById("inputStudyMin").value;
+                        _studyTime = parseInt(document.getElementById("inputStudyMin").value);
                         
                         //console.log("break 1:"+breakTime);
                         breakTime = parseInt(document.getElementById("inputBreakMin").value);
                         
-                        //console.log("break 2:"+breakTime);
                         timeState = 1;
                         break;
                     case 1: //studytime 
